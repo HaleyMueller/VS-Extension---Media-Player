@@ -8,6 +8,8 @@
 Just give a file directory with the files and it will automatically play them!
 
 mp4, mp3, wav, wmv files are supported.</Description>
+        <Icon>subway.png</Icon>
+        <Tags>subway surfers, family guy, media player</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0, 18.0)">

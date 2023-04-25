@@ -84,6 +84,10 @@
   <ItemGroup>
     <Content Include="Resources\subway.png" />
     <Content Include="Resources\ToolWindow1Command.png" />
+    <Content Include="subway.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <VSCTCompile Include="SubwaySurfersPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
