@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="SubwaySurfers.ToolWindow1Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="209.081"
+             Name="Subway_Surfers">
+    <Grid>
+        <ScrollViewer>
+        <StackPanel Orientation="Vertical"><!--Width="9" Height="16"-->
+            <TabControl x:Name="tabControl" SelectionChanged="TabControl_SelectionChanged" Background="#1A1A1A" Foreground="GhostWhite">
+                    <TabItem Header="Setup" Background="#1A1A1A" Foreground="#FF909090">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Media Path:" Width="70" Foreground="GhostWhite" />
+                                <TextBox x:Name="txtMediaPath" Text="E:\\Media" Grid.Column="1" Background="#1F1F1F" Foreground="GhostWhite" />
+                        </Grid>
+                        <Separator></Separator>
+                        <CheckBox x:Name="chkAutoPlay" Content="AutoPlay?" HorizontalAlignment="Right" Checked="chkAutoPlay_Checked" Foreground="GhostWhite"></CheckBox>
+                        <CheckBox x:Name="chkRandomPlay" Content="Random?" HorizontalAlignment="Right" Visibility="Collapsed" Foreground="GhostWhite"></CheckBox>
+                        <Label Content="Found media:" Foreground="GhostWhite"></Label>
+                            <DataGrid Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectedCellsChanged="DG1_SelectedCellsChanged" Foreground="#FF909090" Background="#1F1F1F"  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="File Name"  Binding="{Binding FileName}" Foreground="Black" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                            <Button x:Name="btnRefreshGrid" Content="Refresh" Click="btnRefreshGrid_Click" Background="#383838" Foreground="GhostWhite"/>
+                            <Button x:Name="btnPlayFile" Content="Play Media" Visibility="Collapsed" Click="btnPlayFile_Click" Background="#383838" Foreground="GhostWhite"/>
+                    </StackPanel>
+                </TabItem>
+                    <TabItem Header="Media" Background="#1A1A1A" Foreground="#FF909090">
+                    <StackPanel>
+                        <MediaElement x:Name="mediaPlayer" LoadedBehavior="Manual" Width="{Binding CurrentWindowWidth}" Height="{Binding CurrentWindowHeight}" Stretch="UniformToFill" MediaEnded="mediaPlayer_MediaEnded" />
+                            <Label x:Name="lblPleaseLoadMedia" Content="Please start a file in the setup menu first" Background="#383838" Foreground="GhostWhite"/>
+                            <Button x:Name="btnStart" Content="Start" Click="btnStart_Click" Visibility="Collapsed" Background="#383838" Foreground="GhostWhite"/>
+                            <Button x:Name="btnMute" Content="Mute" Click="button1_Click" Visibility="Collapsed" Background="#383838" Foreground="GhostWhite"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
