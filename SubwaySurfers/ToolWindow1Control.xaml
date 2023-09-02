@@ -26,7 +26,7 @@
                         <Separator></Separator>
                         <CheckBox x:Name="chkAutoPlay" Content="AutoPlay?" HorizontalAlignment="Right" Checked="chkAutoPlay_Checked" Foreground="GhostWhite"></CheckBox>
                         <CheckBox x:Name="chkRandomPlay" Content="Random?" HorizontalAlignment="Right" Visibility="Collapsed" Foreground="GhostWhite"></CheckBox>
-                        <Label Content="Found media:" Foreground="GhostWhite"></Label>
+                            <Label x:Name="lblFound" Content="Found media:" Foreground="GhostWhite"></Label>
                             <DataGrid Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectedCellsChanged="DG1_SelectedCellsChanged" Foreground="#FF909090" Background="#1F1F1F"  IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="File Name"  Binding="{Binding FileName}" Foreground="Black" Width="*"/>
