@@ -7,7 +7,7 @@
 
 Just give a file directory with the files and it will automatically play them!
 
-mp4, mp3, wav, wmv files are supported.</Description>
+mp4, mp3, mkv, wav, wmv files are supported.</Description>
         <Icon>subway.png</Icon>
         <Tags>subway surfers, family guy, media player</Tags>
     </Metadata>
