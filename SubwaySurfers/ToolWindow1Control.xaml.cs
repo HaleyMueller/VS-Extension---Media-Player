@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Shapes;
+using static System.StringComparison;
 
 namespace SubwaySurfers
 {
@@ -108,31 +109,36 @@ namespace SubwaySurfers
 
         private void btnRefreshGrid_Click(object sender, RoutedEventArgs e)
         {
-            List<string> files = System.IO.Directory.EnumerateFiles(txtMediaPath.Text, "*.mp4")
-                .Union(Directory.EnumerateFiles(txtMediaPath.Text, "*.wmv"))
-                .Union(Directory.EnumerateFiles(txtMediaPath.Text, "*.wav"))
-                .Union(Directory.EnumerateFiles(txtMediaPath.Text, "*.mp3")).ToList();
-
-            var lst = new List<Test>();
-
-            foreach (string file in files)
+            if( !Directory.Exists( txtMediaPath.Text ) )
             {
-                lst.Add(new Test() { FileName = file });
+                lblFound.Content = $"Path Not Found {txtMediaPath.Text}";
+                return;
             }
 
-            DG1.DataContext = lst;
+            var files = Directory
+                .EnumerateFiles( txtMediaPath.Text, "*.*" )
+                .Where( f => IsValidExtension( f ) )
+                .Select( f => new Test { FileName = f } )
+                .ToList();
+            lblFound.Content = $"Found media: {files.Count}";
+            DG1.DataContext = files;
+        }
+
+        private static readonly string[] _extensions = new string[] 
+        { ".mp4", ".wmv", ".wav", ".mp3", ".mkv" };
+        private static bool IsValidExtension(string file)
+        {
+            var extension = System.IO.Path.GetExtension( file );
+            var isValid = _extensions.Any( ext => ext.Equals( extension, CurrentCultureIgnoreCase ) );
+
+            return isValid;
         }
 
         private void chkAutoPlay_Checked(object sender, RoutedEventArgs e)
         {
-            if (chkAutoPlay.IsChecked == true)
-            {
-                chkRandomPlay.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                chkRandomPlay.Visibility = Visibility.Collapsed;
-            }
+            chkRandomPlay.Visibility = chkAutoPlay.IsChecked.GetValueOrDefault()
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         System.Random rand = new System.Random();
