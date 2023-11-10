@@ -7,8 +7,7 @@
 
 Just give a file directory with the files and it will automatically play them!
 
-mp4, mp3, wav, wmv files are supported.</Description>
-        <MoreInfo>https://github.com/HaleyMueller/VS-Extension---Media-Player</MoreInfo>
+mp4, mp3, mkv, wav, wmv files are supported.</Description>
         <Icon>subway.png</Icon>
         <PreviewImage>subway.png</PreviewImage>
         <Tags>subway surfers, family guy, media player</Tags>
