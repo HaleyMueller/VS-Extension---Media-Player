@@ -141,6 +141,7 @@ namespace SubwaySurfers
 
         private void mediaPlayer_MediaEnded(object sender, RoutedEventArgs e)
         {
+            MediaPlayerCurrentPosition = TimeSpan.Zero;
             if (chkAutoPlay.IsChecked.GetValueOrDefault())
             {
                 List<Test> list = DG1.Items.OfType<Test>().ToList();
@@ -184,6 +185,7 @@ namespace SubwaySurfers
 
         private void btnPlayFile_Click(object sender, RoutedEventArgs e)
         {
+            MediaPlayerCurrentPosition = TimeSpan.Zero;
             if (DG1.SelectedItem != null)
             {
                 var item = DG1.SelectedItem as Test;
